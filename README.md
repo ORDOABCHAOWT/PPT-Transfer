@@ -4,172 +4,128 @@
 
 ![PPT Transfer Icon](icon_256.png)
 
-**macOS Sequoia 风格的 PPT 文案提取工具**
+**macOS 风格的 PPT 文案提取工具**
 
-一键提取 PPT 中的所有文案内容，支持导出为 Word 文档
+一键提取 PowerPoint 演示文稿中的所有文案内容，自动导出为 Word 文档
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+[![macOS](https://img.shields.io/badge/platform-macOS-lightgrey.svg)](https://www.apple.com/macos/)
 
 </div>
 
-## ✨ 特性
+---
 
-- 🎨 **macOS Sequoia 设计风格** - 现代化的毛玻璃界面，完美适配 macOS
-- 🚀 **一键提取** - 拖放 PPT 文件即可快速提取所有文案
-- 📊 **实时进度** - 流畅的进度条显示，实时追踪提取进度
-- 📝 **Word 导出** - 自动导出为格式化的 Word 文档
-- 🔄 **智能排序** - 支持列优先排序，保持原有结构
-- 🎭 **格式保留** - 可选择保留原文本格式（加粗、斜体等）
-- ⚡ **自动更新** - 一键更新应用到 Applications 文件夹
+## 功能特性
 
-## 📦 安装
+- **智能提取** - 按列从左到右、每列内从上到下自动识别并提取文本
+- **格式保留** - 可选保留原始文本格式（加粗、斜体、颜色等）
+- **实时进度** - 流畅的进度条显示，实时追踪处理状态
+- **现代界面** - macOS Sequoia 风格的毛玻璃效果和优雅动画
+- **一键导出** - 自动生成格式化的 Word 文档，即刻下载
 
-### 方式一：自动构建（推荐）
+## 快速开始
 
-```bash
-cd /Users/whitney/Downloads/PPT-Transfer
-./build_app.sh
-```
+### 安装部署
 
-构建完成后，应用会自动部署到 `/Applications/PPT Transfer.app`
-
-### 方式二：开发模式
-
-```bash
-./run.sh
-```
-
-开发模式会在 `http://127.0.0.1:5002` 启动服务器
-
-## 🚀 使用方法
-
-### 应用模式
-
-1. 在启动台或 Applications 文件夹中找到 **PPT Transfer**
-2. 双击打开，浏览器会自动打开 Web 界面
-3. 拖放 PPT 文件到界面中，或点击上传按钮
-4. 选择提取选项：
-   - **列优先排序**：按列顺序排列文案（推荐）
-   - **保留格式**：保留加粗、斜体等文本格式
-5. 等待提取完成，Word 文档会自动下载
-
-### 开发模式
-
-```bash
-# 启动开发服务器
-./run.sh
-
-# 清理旧进程
-./clean.sh
-```
-
-## 🔄 更新应用
-
-修改代码后，运行快速更新脚本：
-
-```bash
-./update_app.sh
-```
-
-或执行完整构建：
+**构建 macOS 应用（推荐）**
 
 ```bash
 ./build_app.sh
 ```
 
-## 📂 项目结构
+构建完成后，应用将自动安装到 `/Applications/PPT Transfer.app`，可从启动台直接打开。
+
+**开发模式运行**
+
+```bash
+./run.sh
+```
+
+服务将在 `http://127.0.0.1:5002` 启动，浏览器会自动打开界面。
+
+### 使用方法
+
+1. 打开 PPT Transfer 应用或访问开发服务器地址
+2. 拖拽 `.pptx` 文件到界面，或点击上传按钮选择文件
+3. 选择提取选项：
+   - **列优先排序** - 按列顺序组织内容（推荐）
+   - **保留文本格式** - 保持原始样式
+4. 点击"开始提取"，等待处理完成
+5. Word 文档将自动下载
+
+## 项目结构
 
 ```
 PPT-Transfer/
-├── server.py                 # Flask 后端服务
-├── extract_ppt.py           # PPT 提取核心逻辑
-├── create_icon.py           # 应用图标生成脚本
+├── server.py              # Flask Web 服务器
+├── extract_ppt.py         # PPT 提取核心引擎
 ├── templates/
-│   └── index.html          # Web UI 界面
+│   └── index.html         # 用户界面
 ├── static/
-│   ├── style.css           # macOS Sequoia 风格样式
-│   └── script.js           # 前端交互逻辑
-├── build_app.sh            # 自动构建和部署脚本
-├── update_app.sh           # 快速更新脚本
-├── clean.sh                # 进程清理脚本
-└── run.sh                  # 开发模式启动脚本
+│   ├── style.css          # 样式表
+│   └── script.js          # 前端逻辑
+├── build_app.sh           # 应用构建脚本
+├── update_app.sh          # 快速更新脚本
+├── run.sh                 # 开发启动脚本
+└── clean.sh               # 进程清理脚本
 ```
 
-## 🎨 设计特点
+## 开发指南
 
-- **橙紫渐变图标**：采用 Apple Orange 到 Apple Purple 的渐变色
-- **文档提取主题**：图标展示文档到文本的提取过程
-- **毛玻璃效果**：使用 backdrop-filter 实现现代化的透明效果
-- **流畅动画**：所有交互都配有平滑的过渡动画
-- **响应式设计**：完美适配不同尺寸的浏览器窗口
+### 系统要求
 
-## 🛠 技术栈
+- macOS 10.15+
+- Python 3.7+
+- 自动安装依赖：`flask` `python-pptx` `python-docx` `werkzeug` `Pillow`
 
-- **后端**：Flask + Python 3
-- **前端**：HTML5 + CSS3 + Vanilla JavaScript
-- **文档处理**：python-pptx + python-docx
-- **图标生成**：Pillow (PIL)
-- **实时通信**：Server-Sent Events (SSE)
+### 常用命令
 
-## 📋 系统要求
+```bash
+# 快速更新已安装的应用（仅更新代码文件）
+./update_app.sh
 
-- macOS 10.15 或更高版本
-- Python 3.7 或更高版本
-- 依赖包会自动安装：
-  - flask
-  - python-pptx
-  - python-docx
-  - werkzeug
-  - Pillow
+# 完整重新构建应用
+./build_app.sh
 
-## 🔧 脚本说明
+# 清理后台进程和端口占用
+./clean.sh
 
-### build_app.sh
-完整构建和部署脚本，包含 7 个步骤：
-1. 清理旧版本
-2. 创建应用包结构
-3. 生成应用图标（.icns）
-4. 复制应用文件
-5. 创建启动脚本
-6. 创建 Info.plist
-7. 部署到 Applications 文件夹
+# 开发模式运行
+./run.sh
+```
 
-### update_app.sh
-快速更新脚本，仅更新以下文件：
-- Python 代码（server.py, extract_ppt.py）
-- Web UI 文件（HTML, CSS, JS）
+### 技术栈
 
-### clean.sh
-清理脚本，用于：
-- 停止所有 PPT Transfer 相关进程
-- 释放端口 5002
-- 解决端口冲突问题
+| 组件 | 技术 |
+|------|------|
+| 后端服务 | Flask + Python 3 |
+| 前端界面 | HTML5 + CSS3 + JavaScript |
+| 文档处理 | python-pptx, python-docx |
+| 实时通信 | Server-Sent Events (SSE) |
+| UI 设计 | macOS Sequoia 风格 |
 
-### run.sh
-开发模式启动脚本：
-- 自动检查并安装依赖
-- 在 http://127.0.0.1:5002 启动服务器
-- 便于快速测试和调试
+## 更新日志
 
-## 📝 版本历史
+**v1.0** (2025-12-03)
+- 首次发布
+- 实现智能列优先提取算法
+- 支持文本格式保留
+- 采用 macOS Sequoia 设计语言
+- 提供自动化构建和更新系统
 
-### v1.0 (2025-12-03)
-- ✨ 首次发布
-- 🎨 采用 macOS Sequoia 设计风格
-- 📊 实时进度追踪
-- 📝 Word 文档导出
-- 🔄 自动构建和更新系统
+## 许可证
 
-## 📄 许可证
+本项目基于 [MIT License](https://opensource.org/licenses/MIT) 开源。
 
-MIT License
+## 致谢
 
-## 🙏 鸣谢
-
-基于 [ORDOABCHAOWT/PPT--transfer](https://github.com/ORDOABCHAOWT/PPT--transfer) 项目重构
+基于 [ORDOABCHAOWT/PPT--transfer](https://github.com/ORDOABCHAOWT/PPT--transfer) 项目重构开发。
 
 ---
 
 <div align="center">
 
-**🎉 享受使用 PPT Transfer！**
+**Made with ❤️ for macOS**
 
 </div>
