@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPT Transfer - 文案提取工具</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="app-container">
+        <header>
+            <h1>PPT Transfer</h1>
+            <p class="subtitle">智能文案提取工具</p>
+        </header>
+
+        <main>
+            <div class="upload-zone" id="dropZone">
+                <div class="upload-content">
+                    <i class="fa-solid fa-file-powerpoint upload-icon"></i>
+                    <h2>拖放 PPT 文件到这里</h2>
+                    <p>或者点击选择文件</p>
+                    <input type="file" id="fileInput" accept=".pptx" hidden>
+                </div>
+                <div class="file-info" id="fileInfo" style="display: none;">
+                    <i class="fa-regular fa-file-powerpoint file-icon"></i>
+                    <div class="file-details">
+                        <span class="filename" id="filename">presentation.pptx</span>
+                        <span class="filesize" id="filesize">0 MB</span>
+                    </div>
+                    <button class="remove-btn" id="removeFile"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+
+            <div class="settings-panel">
+                <h3>提取选项</h3>
+                <div class="options-grid">
+                    <label class="option-card">
+                        <input type="checkbox" name="column_sort" checked>
+                        <div class="card-content">
+                            <i class="fa-solid fa-table-columns"></i>
+                            <span class="option-name">列优先排序</span>
+                            <span class="option-desc">从左到右按列提取</span>
+                        </div>
+                    </label>
+                    <label class="option-card">
+                        <input type="checkbox" name="keep_format" checked>
+                        <div class="card-content">
+                            <i class="fa-solid fa-palette"></i>
+                            <span class="option-name">保留样式</span>
+                            <span class="option-desc">根据字号设置标题</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="action-area">
+                <button id="extractBtn" class="glass-btn primary" disabled>
+                    <span class="btn-text">开始提取</span>
+                    <div class="loader" style="display: none;"></div>
+                </button>
+            </div>
+
+            <div class="result-overlay" id="resultOverlay">
+                <div class="result-card glass-panel">
+                    <div class="success-icon">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h2>提取完成!</h2>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="label">总页数</span>
+                            <span class="value" id="totalSlides">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="label">文本块</span>
+                            <span class="value" id="textBlocks">0</span>
+                        </div>
+                        <div class="stat-item highlight">
+                            <span class="label">文件大小</span>
+                            <span class="value" id="fileSize">0 KB</span>
+                        </div>
+                    </div>
+                    <div class="result-actions">
+                        <a href="#" id="downloadLink" class="glass-btn primary">下载 Word 文档</a>
+                        <button id="extractAnother" class="glass-btn secondary">提取另一个</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
